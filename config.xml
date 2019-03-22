@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<glog>
+	<global>
+		<buffer>
+			<!--日志信息缓冲区配置-->
+			<param name="MinSize" value="1024"/>
+			<param name="MaxSize" value="2M"/>
+		</buffer>
+	</global>
+	<rules>
+		<category name="asr" >  <!--日志类型-->
+			<rollingPolicy>  <!--滚动策略-->
+				<!--文件输出格式配置-->
+				<!-- 暂时只支持日期滚动 序号滚动 -->
+				<param name="FileNamePattern" value="/home/test/glog/log_%d(yyyy-MM-dd).#2s.log" />  
+				<param name="FileCountPattern" value="3" />  <!--文件滚动个数配置,0表示不滚动-->
+				<param name="FileSizePattern" value="1MB" />  <!--文件滚动大小配置-->
+			</rollingPolicy> 
+			<layout>
+				<param name="ConversionPattern" value="%D.%ms [%V][%F:%L] %m%n"/>   <!--日志输出格式配置-->
+			</layout>
+			<filter>
+				<!--日志过滤配置-->
+				<!-- LevelOperate参数说明 -->
+				<!-- * 所有级别，不考虑tag值 -->
+				<!-- = 指定tag级别 -->
+				<!-- ! 输出除tag外的所有级别 -->
+				<!-- > 输出大于tag的级别 -->
+				<!-- < 输出小于tag的级别 -->
+				<param name="LevelOperate" value="*" tag="info"/>
+			</filter>
+		</category>
+	</rules>
+</glog>
+
